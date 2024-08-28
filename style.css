@@ -80,6 +80,7 @@
     /* Adjust styles for smaller screens */
     .quiz-container {
       padding: 10px;
+        width: 100%;
     }
     #options button {
       font-size: 14px;
