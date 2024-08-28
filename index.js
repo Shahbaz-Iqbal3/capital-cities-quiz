@@ -205,7 +205,7 @@ let isQuizOver = false;
 
 // DOM elements
 const questionElement = document.getElementById("question");
-const progressElement = document.getElementById("score");
+const progressElement = document.getElementById("progress");
 const optionsContainer = document.getElementById("options");
 const resultElement = document.getElementById("result");
 const scoreElement = document.getElementById("score");
@@ -222,15 +222,31 @@ function loadNextQuestion() {
 
   const currentQuestion = countriesAndCapitals[currentQuestionIndex];
   questionElement.textContent = `What is the capital of ${currentQuestion[0]} ${currentQuestion[2]} ?`;
-  progressElement.textContent = `score: ${correctAnswers}  | ${currentQuestionIndex +1 } / ${countriesAndCapitals.length}`
+  progressElement.textContent = `score: ${correctAnswers}  |||||||| ${currentQuestionIndex +1 } / ${countriesAndCapitals.length}`
 
   optionsContainer.innerHTML = "";
-  for (let i = 0; i < 4; i++) {
-    const option = document.createElement("button");
-    option.textContent = i === 0 ? currentQuestion[1] : getRandomCapital();
-    option.addEventListener("click", checkAnswer);
-    optionsContainer.appendChild(option);
-  }
+
+// Create an array to hold the options
+let options = [];
+
+// Add the correct answer
+options.push(currentQuestion[1]);
+
+// Add the incorrect answers
+for (let i = 0; i < 3; i++) {
+  options.push(getRandomCapital());
+}
+
+// Shuffle the options array
+options = options.sort(() => Math.random() - 0.5);
+
+// Create buttons for each option and append them to the container
+options.forEach(optionText => {
+  const option = document.createElement("button");
+  option.textContent = optionText;
+  option.addEventListener("click", checkAnswer);
+  optionsContainer.appendChild(option);
+});
 
   currentQuestionIndex++;
 }
