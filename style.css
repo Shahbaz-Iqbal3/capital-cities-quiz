@@ -1,0 +1,87 @@
+/* Style for Country Capital Quiz */
+
+.quiz-container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+  }
+  
+  #question {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+
+  }
+  .box {
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+
+  }
+  #options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  #options button:hover {
+    background-color: #e5e5e5;
+  }
+  
+  #nextButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  #nextButton:hover {
+    background-color: #3e8e41;
+  }
+  
+  #result {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #score {
+    font-size: 18px;
+    text-align: center;
+  }
+  /* General Styles */
+.quiz-container {
+    max-width: 800px; /* Set a maximum width for larger screens */
+    margin: 20px auto;
+  }
+  
+  /* Mobile-Specific Styles */
+  @media screen and (max-width: 600px) {
+    /* Adjust styles for smaller screens */
+    .quiz-container {
+      padding: 10px;
+    }
+    #options button {
+      font-size: 14px;
+    }
+  }
