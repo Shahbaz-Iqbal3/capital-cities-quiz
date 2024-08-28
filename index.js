@@ -210,6 +210,36 @@ const optionsContainer = document.getElementById("options");
 const resultElement = document.getElementById("result");
 const scoreElement = document.getElementById("score");
 const nextButton = document.getElementById("nextButton");
+const prevButton = document.getElementById("prev");
+const resetButton = document.getElementById("reset");
+const endButton = document.getElementById("end");
+let corectElement = ''
+
+
+prevButton.addEventListener("click", () => {
+  if (currentQuestionIndex > 1) {
+    currentQuestionIndex = currentQuestionIndex -2
+    loadNextQuestion()
+  }
+})
+resetButton.addEventListener("click", () => {
+  questionElement.style.display = "block";
+  optionsContainer.style.display = "block";
+  nextButton.style.display = "block";
+
+  resultElement.textContent = ``;
+  scoreElement.textContent = ''
+
+  currentQuestionIndex = 0 
+  isQuizOver = false
+  incorrectAnswers = 0 
+  correctAnswers = 0
+  loadNextQuestion()
+})
+endButton.addEventListener("click", () => {
+  isQuizOver = true;
+    displayResult();
+})
 
 // Function to load the next question
 function loadNextQuestion() {
@@ -222,7 +252,7 @@ function loadNextQuestion() {
 
   const currentQuestion = countriesAndCapitals[currentQuestionIndex];
   questionElement.textContent = `What is the capital of ${currentQuestion[0]} ${currentQuestion[2]} ?`;
-  progressElement.textContent = `score: ${correctAnswers}  |||||||| ${currentQuestionIndex +1 } / ${countriesAndCapitals.length}`
+  progressElement.textContent = `score: ${correctAnswers}  ________ ${currentQuestionIndex +1 } / ${countriesAndCapitals.length}`
 
   optionsContainer.innerHTML = "";
 
@@ -244,6 +274,9 @@ options = options.sort(() => Math.random() - 0.5);
 options.forEach(optionText => {
   const option = document.createElement("button");
   option.textContent = optionText;
+  if(option.textContent == currentQuestion[1]){
+    corectElement = option
+  }
   option.addEventListener("click", checkAnswer);
   optionsContainer.appendChild(option);
 });
@@ -263,18 +296,24 @@ function getRandomCapital() {
   return randomCapital;
 }
 
+
 // Function to check the user's answer
 function checkAnswer(event) {
   const selectedAnswer = event.target.textContent;
+  console.log(event);
+  
   const correctAnswer = countriesAndCapitals[currentQuestionIndex - 1][1];
 
   if (selectedAnswer === correctAnswer) {
     correctAnswers++;
+    event.srcElement.style.borderColor = "green"
   } else {
     incorrectAnswers++;
+    event.srcElement.style.borderColor = "red"
+   corectElement.style.borderColor = "green"
   }
-
-  loadNextQuestion();
+  optionsContainer.style.pointerEvents = "none"
+  
 }
 
 // Function to display the final result
@@ -284,7 +323,7 @@ function displayResult() {
   nextButton.style.display = "none";
 
   resultElement.textContent = `Quiz Over!`;
-  scoreElement.textContent = `Correct Answers: ${correctAnswers}, Incorrect Answers: ${incorrectAnswers}`;
+  scoreElement.textContent = `Correct Answers: ${correctAnswers}, \n Incorrect Answers: ${incorrectAnswers}`;
 }
 
 // Load the first question
@@ -293,6 +332,7 @@ loadNextQuestion();
 // Event listener for the next button
 nextButton.addEventListener("click", () => {
   if (!isQuizOver) {
+    optionsContainer.style.pointerEvents = "all"
     loadNextQuestion();
   }
 });

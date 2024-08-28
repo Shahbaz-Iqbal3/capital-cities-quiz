@@ -51,7 +51,7 @@
     background-color: #e5e5e5;
   }
   
-  #nextButton {
+  #nextButton, .btn {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 18px;
@@ -62,7 +62,7 @@
     cursor: pointer;
   }
   
-  #nextButton:hover {
+  #nextButton:hover, .btn:hover {
     background-color: #3e8e41;
   }
   
@@ -78,7 +78,17 @@
     text-align: center;
   }
   /* General Styles */
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+}
 
+.buttons .btn{
+  flex-basis: 30%;
+  background-color: rgb(77, 76, 76);
+}
   
   /* Mobile-Specific Styles */
   @media  (1000px > width > 600px) {
@@ -86,7 +96,7 @@
     .quiz-container {
       width: 100%;
       padding: 30px;
-      margin-top: 30%;
+      margin-top: 10%;
       gap: 50px;
       border: none;
       box-shadow: none  ;
@@ -94,7 +104,7 @@
     h1{
       font-size: 80px;
     }
-    #options button {
+    #options button , #nextButton{
       font-size: 50px;
       padding: 25px;
       margin-top: 20px;
@@ -102,9 +112,12 @@
     .box{
       flex-direction: column;
     }
-    #question, #progress, #nextButton{
+    #question, #progress, #nextButton, .btn{
       font-size: 50px;
 
+    }
+    #score, #result{
+      font-size: 39px;
     }
 
   }
