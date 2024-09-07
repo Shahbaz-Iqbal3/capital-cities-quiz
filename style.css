@@ -82,9 +82,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 30px;
-}
+  margin: 20px 0;
 
+}
+select{
+  padding: 10px;
+  font-size: medium;
+}
 .buttons .btn{
   flex-basis: 30%;
   background-color: rgb(77, 76, 76);
@@ -112,12 +116,13 @@
     .box{
       flex-direction: column;
     }
-    #question, #progress, #nextButton, .btn{
+    #question, #progress, #nextButton, .btn, #continent{
       font-size: 50px;
 
     }
     #score, #result{
       font-size: 39px;
     }
+   
 
   }
